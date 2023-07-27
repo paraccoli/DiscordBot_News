@@ -19,7 +19,7 @@
 コマンドプロンプト：下記のリポジトリをクローンしてください。
 ```
 git clone https://github.com/Paraccoli/DiscordBot_News.git
-cd discord-news-bot
+cd DiscordBot_News
 ```
 
 **2. config.pyファイルから取得したAPIキーとWebhook URLを設定します:**
