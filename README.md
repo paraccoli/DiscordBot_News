@@ -14,6 +14,13 @@
 - DiscordのWebhook URLを取得してください。DiscordのサーバーにWebhookを作成し、そのURLを取得してください。
 
 **1. Zipファイルのダウンロードを行い解凍してください**
+コマンドプロンプトでのダウンロードもしくはGithub上の**<>code**からダウンロードしてください。
+
+コマンドプロンプト：下記のリポジトリをクローンしてください。
+```
+git clone https://github.com/Paraccoli/DiscordBot_News.git
+cd discord-news-bot
+```
 
 **2. config.pyファイルから取得したAPIキーとWebhook URLを設定します:**
 ```python
