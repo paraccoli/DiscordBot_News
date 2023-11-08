@@ -42,7 +42,7 @@ pip install requests
 **4. Botを実行します:**
 
 ```
-python Disocrd_NEWS.py
+python Discord_NEWS.py
 ```
 
 
