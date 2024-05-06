@@ -1,9 +1,8 @@
 import requests
-import config
+import json
 
 # APIキーを取得
-api_key = config.API_KEY
-
+config = json.load(open('config.json'))
 
 def get_top_headlines(api_key , country = 'jp' , category = 'general' , page_size = 5):
     base_url = 'https://newsapi.org/v2/top-headlines'
@@ -39,8 +38,8 @@ def post_to_discord(webhook_url, news, include_title=True):
             response = requests.post(webhook_url, json=payload)
             response.raise_for_status()  # レスポンスがエラーでないことを確認
 
-            # レスポンスのステータスコードが200以外の場合、エラーメッセージを表示
-            if response.status_code != 200:
+            # レスポンスのステータスコードが204以外の場合、エラーメッセージを表示
+            if response.status_code != 204:
                 print(f"Failed to post news: Status code {response.status_code}")
             else:
                 print(f"Successfully posted news: {article['title']}")
@@ -64,27 +63,27 @@ def is_webhook_valid(webhook_url):
     response = requests.post(webhook_url, json=payload)
 
     if response.status_code == 204:
-        return True  # 204は成功を表すステータスコード
+        return True  # 成功ステータスコード
     else:
         return False
 
 def main():
-    # DiscordのWebhook URLを読み込みます
-    webhook_url = config.DISCORD_WEBHOOK_URL
+    # DiscordのWebhook URLを読み込む
+    webhook_url = config['webhook']
     
-    # DiscordのWebhookのURLの有効性を確認します
+    # DiscordのWebhookのURL
     if not is_webhook_valid(webhook_url):
         print("Invalid Discord webhook URL.")
         return
 
-    # News APIのAPIキーを読み込みます
-    api_key = config.API_KEY
+    # News APIのAPIキーを読み込
+    api_key = config['api_key']
 
-    # トップニュースを取得します
+    # トップニュースを取得
     news = get_top_headlines(api_key, country='jp', category='general')
 
     if news:
-        # Discordにニュースを投稿します
+        # Discordにニュースを投稿
         post_to_discord(webhook_url, news)
     else:
         print("Failed to get top headlines.")
