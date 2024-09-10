@@ -56,5 +56,5 @@ python Discord_NEWS.py
 ## 作成者
 
 - 作成者: Paraccoli
-- GitHub: (https://github.com/xM1guel)
+- GitHub: (https://github.com/paraccoli)
 
